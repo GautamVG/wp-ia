@@ -1,5 +1,5 @@
 .app-bar {
-	margin-top: 1em;
+	margin-top: 2em;
 	background-color: var(--primary);
 	padding: 1em;
 	color: white;
@@ -25,13 +25,87 @@
 	text-align: left;
 }
 
-main {
-	flex-grow: 1;
-	padding: 1em 0;
-}
-
 .logout {
 	color: white;
 	cursor: pointer;
 	text-decoration: none;
+}
+
+main {
+	flex-grow: 1;
+	padding: 1em 0 2em 0;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1em;
+}
+
+.slots {
+	flex-grow: 1;
+}
+
+.book-btn {
+	background-color: var(--primary);
+	border-radius: 0.5em;
+	padding: 1em;
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
+	text-align: center;
+}
+
+.slots {
+	overflow: auto;
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 2em;
+}
+
+.slot {
+	border-radius: 0.5em;
+	border: 2px var(--primary) solid;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.slot > .top {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5em 1em;
+}
+
+.slot > .top > .time-details {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	gap: 1em;
+}
+
+.slot > .top .time {
+	color: var(--primary);
+}
+
+.slot > .top i {
+	font-size: 2em;
+	color: var(--primary);
+}
+
+.slot > .top > .booking-details {
+	text-align: right;
+}
+
+.slot > .bottom {
+	display: flex;
+	flex-flow: row nowrap;
+	background-color: var(--primary100);
+	padding: 0.2em;
+	justify-content: center;
+}
+
+.slot > .bottom > .ground-name {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 0.5em;
+	color: var(--primary);
 }

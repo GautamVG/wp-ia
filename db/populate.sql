@@ -39,7 +39,7 @@ INSERT INTO `user` (
         'admin',
         '04dac8afe0ca501587bad66f6b5ce5ad',
         1
-    ),
+    );
     -- Ground Managers
     -- (
     --     'Abhinandan Goswami',
