@@ -1,0 +1,37 @@
+.app-bar {
+	margin-top: 1em;
+	background-color: var(--primary);
+	padding: 1em;
+	color: white;
+}
+
+.container {
+	width: 20vw;
+}
+
+.app-bar > .container {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.app-bar i {
+	font-size: 1.5em;
+}
+
+.app-bar-title {
+	flex-grow: 1;
+	text-align: left;
+}
+
+main {
+	flex-grow: 1;
+	padding: 1em 0;
+}
+
+.logout {
+	color: white;
+	cursor: pointer;
+	text-decoration: none;
+}

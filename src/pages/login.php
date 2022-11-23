@@ -7,7 +7,6 @@
 ?>
 
 <?php 
-
     function isValid($svvid, $pwd) {
         $db = DB\connect();
         try {
@@ -28,6 +27,8 @@
             if (!isValid($svvid, $pwd)) {
                 $errMsg = "Incorrect SVV ID or Password";
             } else {
+                session_start();
+                $_SESSION['svvid'] = $svvid;
                 Redirect\toHomePage();
             }
         } else {
