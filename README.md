@@ -10,7 +10,6 @@ Ensure you have
 
 -   A MySQL client and server
 -   A server capable of running PHP
--   Flutter SDKs
 
 ## Create a local instance of the database
 
@@ -21,7 +20,7 @@ Inside the mysql shell
 \source db/populate.sql
 ```
 
-Create a file named `config.php` inside the `rest` folder. \
+Create a file named `config.php` in the root folder. \
 A `config.example.php` is already present for convenience. \
 These are defaults for a local MySQL server installation. \
 You may or may not need to change these.
@@ -45,23 +44,11 @@ Steps may be different for the server application that you use. \
 
 ### For use with XAMPP using Apache
 
-Either change the server config to serve the project's `rest` folder (not recommended) or \
-Create a symlink in the htdocs folder that points to the project's `rest` folder.
+Either change the server config to serve the project's root folder (not recommended) or \
+Create a symlink in the htdocs folder that points to the project's root folder.
 
 -   On Windows (Use correct and absolute paths)
 
 ```
-mklink /D C:\xampp\htdocs\zschedule C:\absolute\path\to\your\project\root\rest
-```
-
-After that the server api should be accessible at `localhost/api`
-
-## Run the flutter app
-
-Run the app as usual with flutter
-
-```
-cd app
-flutter pub get
-flutter run
+mklink /D C:\xampp\htdocs\zschedule C:\absolute\path\to\your\project\root
 ```
