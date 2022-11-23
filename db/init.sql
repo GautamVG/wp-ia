@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
     `name` varchar(30) NOT NULL,
     `svvid` varchar(30) NOT NULL,
-    `pwd` varchar(30) NOT NULL,
-    `type` int NOT NULL,
+    `pwd` varchar(32) NOT NULL,
+    `type` int NOT NULL DEFAULT 3,
 
     PRIMARY KEY (`svvid`),
     FOREIGN KEY (`type`) 
