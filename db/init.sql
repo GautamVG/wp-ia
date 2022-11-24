@@ -21,7 +21,7 @@ CREATE TABLE `ground` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-    `name` varchar(30) NOT NULL,
+    `name` text NOT NULL,
     `svvid` varchar(30) NOT NULL,
     `pwd` varchar(32) NOT NULL,
     `type` int NOT NULL DEFAULT 3,
