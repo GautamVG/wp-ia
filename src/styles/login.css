@@ -1,5 +1,11 @@
 .container {
-	width: 15vw;
+	min-width: 20vw;
+}
+
+@media (max-width: 480px) {
+	.container {
+		min-width: 90vw;
+	}
 }
 
 h3 {
