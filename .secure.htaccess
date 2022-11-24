@@ -1,0 +1,3 @@
+Options -Indexes +FollowSymLinks
+# RewriteEngine on
+# RewriteRule . http://localhost/dev [P]
