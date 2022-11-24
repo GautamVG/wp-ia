@@ -37,9 +37,9 @@ INSERT INTO `user` (
     (
         'Administrator',
         'admin',
-        '04dac8afe0ca501587bad66f6b5ce5ad',
+        '04dac8afe0ca501587bad66f6b5ce5ad', -- hellokitty
         1
-    );
+    ),
     -- Ground Managers
     -- (
     --     'Abhinandan Goswami',
@@ -66,15 +66,15 @@ INSERT INTO `user` (
     --     'hailjesus',
     --     3
     -- ),
-    -- (
-    --     'Chintan Shukla',
-    --     'c.shukla',
-    --     'purplelove',
-    --     3
-    -- ),
-    -- (
-    --     'Harshal Dave',
-    --     'harshal.dave',
-    --     'roadyahinbanega',
-    --     3
-    -- );
+    (
+        'Chintan Shukla',
+        'c.shukla',
+        'd446a2e14b10db43f9b90dd46d85e76f', -- purplelove
+        3
+    ),
+    (
+        'Harshal Dave',
+        'harshal.dave',
+        '5f76f357b7b3158bbb7346c25e65c511', -- roadyahinbanega
+        3
+    );
