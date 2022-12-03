@@ -1,0 +1,52 @@
+.mobile-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1em;
+}
+
+.ground-card {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	border-radius: 0.5em;
+	border: 1px var(--primary300) solid;
+	overflow: hidden;
+}
+
+.ground-card > .ground-photo {
+	width: 100%;
+	height: 125px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary);
+}
+
+.ground-card > .ground-photo > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.ground-card > .ground-photo i {
+	font-size: 2em;
+	color: white;
+}
+
+.ground-card > .ground-name {
+	font-size: 1.2em;
+	margin: 1em 0 0.3em 0;
+}
+
+.ground-card > .ground-manager {
+	font-size: 0.8em;
+	margin: 0.1em 0 1em 0;
+}
+
+.ground-card > .ground-card-action {
+	border-radius: 0.5em;
+	padding: 0.5em 2.5em;
+	margin: 0.5em 0 1.5em 0;
+	color: white;
+	background-color: var(--primary);
+}

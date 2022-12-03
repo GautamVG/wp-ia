@@ -32,7 +32,11 @@
                 $errMsg = "Incorrect SVV ID or Password";
             } else {
                 session_start();
-                $_SESSION['userData'] = $userData;
+                $_SESSION['userData'] = [
+                    "svvid" => $userData["svvid"],
+                    "name" => $userData["name"],
+                    "userTypeLabel" => $userData["user_type_label"],
+                ];
                 Redirect\toBookingsPage();
             }
         } else {

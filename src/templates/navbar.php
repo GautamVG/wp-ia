@@ -1,6 +1,6 @@
 <?php 
     $currentPageFilename = pathinfo(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), PATHINFO_FILENAME);
-    $userIsAdmin = $_SESSION['userData']['user_type_label'] == "admin";
+    $userIsAdmin = $_SESSION['userData']['userTypeLabel'] == "admin";
 ?>
 
 <div class="app-bar">
