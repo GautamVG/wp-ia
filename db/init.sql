@@ -45,11 +45,11 @@ CREATE TABLE `booking` (
     PRIMARY KEY (`id`),
     FOREIGN KEY (`ground`)
         REFERENCES `ground` (`id`)
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (`user_svvid`)
         REFERENCES `user` (`svvid`)
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
