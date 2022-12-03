@@ -4,17 +4,17 @@
 
 <?php 
     function toErrorPage($msg) {
-        header("Location: " . SERVER_ROOT . "/pages/error.php?msg=$msg");
+        header("Location: " . SERVER_ROOT . "/error.php?msg=$msg");
         die();
     }
 
     function toHomePage() {
-        header("Location: ". SERVER_ROOT . "/pages/home.php");
+        header("Location: ". SERVER_ROOT . "/home.php");
         die();
     }
 
     function toLoginPage() {
-        header("Location: ". SERVER_ROOT . "/pages/login.php");
+        header("Location: ". SERVER_ROOT . "/login.php");
         die();
     }
 ?>

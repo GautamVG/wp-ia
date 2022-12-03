@@ -40,14 +40,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include_once(PROJECT_ROOT. "pages/head_base.php"); ?>
     <style>
-        <?php 
-            include_once(PROJECT_ROOT . "styles/base.css");
-            include_once(PROJECT_ROOT . "styles/login.css");
-        ?>
+        <?php include_once(PROJECT_ROOT . "styles/login.css"); ?>
     </style>
     <title>Login | ZSchedule</title>
 </head>

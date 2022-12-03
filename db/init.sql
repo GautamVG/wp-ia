@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS `zschedule_dev`;
-CREATE DATABASE `zschedule_dev`;
+DROP DATABASE IF EXISTS `zschedule_php`;
+CREATE DATABASE `zschedule_php`;
 
-USE `zschedule_dev`;
+USE `zschedule_php`;
 
 DROP TABLE IF EXISTS `user_type`;
 CREATE TABLE `user_type` (
@@ -22,8 +22,8 @@ CREATE TABLE `ground` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
     `name` text NOT NULL,
-    `svvid` varchar(30) NOT NULL,
-    `pwd` varchar(32) NOT NULL,
+    `svvid` varchar(128) NOT NULL,
+    `pwd` varchar(60) NOT NULL,
     `type` int NOT NULL DEFAULT 3,
 
     PRIMARY KEY (`svvid`),

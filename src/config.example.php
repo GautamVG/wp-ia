@@ -5,6 +5,7 @@
 	define("DB_PASS", "");
 	define("DB_NAME", "zschedule_dev");
 
-	// This should be the exact server url where this app is hosted
-	define("SERVER_ROOT", "http://localhost/path/to/project/root/src"); 
+	// This should be the exact server url to the src/pages folder
+	// This is used for in-app redirection
+	define("SERVER_ROOT", "http://localhost/path/to/project/src/pages"); 
 ?>

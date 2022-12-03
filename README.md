@@ -22,21 +22,8 @@ Inside the mysql shell
 
 Create a file named `config.php` in the root folder. \
 A `config.example.php` is already present for convenience. \
-These are defaults for a local MySQL server installation. \
-You may or may not need to change these.
-
-```
-<?php
-	define("DB_HOST", "localhost");
-	define("DB_PORT", "3306");
-	define("DB_USER", "root");
-	define("DB_PASS", "");
-	define("DB_NAME", "zschedule_dev");
-
-	// This should be the exact server url where this app is hosted
-	define("SERVER_ROOT", "http://localhost/path/to/project/root/src");
-?>
-```
+It contains the defaults for a local MySQL server installation. \
+You may or may not need to change its values.
 
 ## Run the server
 
@@ -44,11 +31,23 @@ Steps may be different for the server application that you use. \
 
 ### For use with XAMPP using Apache
 
-Either change the server config to serve the project's root folder (not recommended) or \
-Create a symlink in the htdocs folder that points to the project's root folder.
-
--   On Windows (Use correct and absolute paths)
+Change the server config to serve the project's root folder using a new virtual host.
+Add the following lines to `httpd.conf`
 
 ```
-mklink /D C:\xampp\htdocs\zschedule C:\absolute\path\to\your\project\root
+	// TODO
 ```
+
+If you want a custom local domain like `http://zschedule.com`, then:
+
+-   Change the `ServerName` in the above config to `zschedule.com`
+-   Then add `zschedule.com` as a hostname that points to your localhost in your system's `hosts` file.
+    -   On windows, this file is located at `C:/Windows32/drivers/etc/hosts`
+    -   On linux, this file is located at `etc/hosts/`
+
+```
+127.0.0.1 zschedule.com
+```
+
+-   Flush your dns with `ipconfig /flushdns` and restart the XAMPP server
+-   This will serve the app at `http://zschedule.com`.
