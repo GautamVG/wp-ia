@@ -19,6 +19,21 @@ CREATE TABLE `ground` (
     PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `zone`;
+CREATE TABLE `zone` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `name` varchar(60) NOT NULL,
+    `is_primary` boolean NOT NULL DEFAULT false,
+    `amenities` text,
+    `ground_id` int NOT NULL,
+
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`ground_id`) 
+        REFERENCES `ground` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
     `name` text NOT NULL,
@@ -39,31 +54,16 @@ CREATE TABLE `booking` (
     `date` date NOT NULL,
     `start_time` time NOT NULL,
     `end_time` time NOT NULL,
-    `ground` int NOT NULL,
-    `user_svvid` varchar(30) NOT NULL,
+    `zone_id` int NOT NULL,
+    `user_svvid` varchar(128) NOT NULL,
 
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`ground`)
-        REFERENCES `ground` (`id`)
+    FOREIGN KEY (`zone_id`)
+        REFERENCES `zone` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (`user_svvid`)
         REFERENCES `user` (`svvid`)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
-
-DROP TABLE IF EXISTS `ground_to_user`;
-CREATE TABLE `ground_to_user` (
-    `ground_id` int NOT NULL,
-    `user_svvid` varchar(30) NOT NULL,
-
-    FOREIGN KEY (`ground_id`)
-        REFERENCES `ground` (`id`)
-        ON DELETE RESTRICT
-        ON UPDATE CASCADE,
-    FOREIGN KEY (`user_svvid`)
-        REFERENCES `user` (`svvid`)
-        ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
