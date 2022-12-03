@@ -3,7 +3,7 @@
 <?php include_once(dirname(__DIR__) . "/bootstrap.php") ?>
 
 <?php 
-    include_once(PROJECT_ROOT . "lib/errors.php");
+    include_once(APP_ROOT . "lib/errors.php");
 ?>
 
 <?php 

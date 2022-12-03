@@ -1,18 +1,23 @@
 <?php include_once(dirname(__DIR__) . "/bootstrap.php") ?>
 
 <?php 
-    include_once(PROJECT_ROOT . "lib/db.php");
-    include_once(PROJECT_ROOT . "lib/errors.php");
-    include_once(PROJECT_ROOT . "lib/redirect.php");
+    include_once(APP_ROOT . "lib/db.php");
+    include_once(APP_ROOT . "lib/errors.php");
+    include_once(APP_ROOT . "lib/redirect.php");
 ?>
 
 <?php 
     function isValid($svvid, $pwd) {
         $db = DB\connect();
         try {
-            $hashedPwd = md5($pwd);
-            $results = $db->query("SELECT * FROM `user` WHERE `svvid` = '$svvid' and `pwd` = '$hashedPwd'");
-            if ($results and count($results->fetchAll()) > 0) return true;
+            $stmt = $db->prepare("SELECT * FROM `user` WHERE `svvid` = ':svvid' LIMIT 1");
+            $stmt->bindParam(':svvid', $svvid);
+            $response = $stmt->execute();
+            if ($response) {
+                $results = $response->fetchAll();
+                if (count($results) > 0 && password_verify($pwd, $results[0]['pwd']))
+                    return true;
+            }
         } catch (Exception $err) {
             Redirect\toErrorPage($err->getMessage());
         }
@@ -40,10 +45,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once(PROJECT_ROOT. "pages/head_base.php"); ?>
-    <style>
-        <?php include_once(PROJECT_ROOT . "styles/login.css"); ?>
-    </style>
+    <?php include_once(APP_ROOT. "templates/head_base.html"); ?>
+    <link rel="stylesheet" href="/public/styles/login.css">
     <title>Login | ZSchedule</title>
 </head>
 <body>
@@ -52,14 +55,14 @@
         <h3>Welcome</h3>
         <form method="POST" />
             <label>SVV ID</label>
-            <input type="text" name="svvid" required />
+            <input type="email" name="svvid" required />
             <label>Password</label>
             <input type="password" name="pwd" required />
             <input type="submit" name="login" />
         </form>
         <p>
-            Do not have an account? 
-            <a href="./signup.php">Sign up</a> 
+            Forgot password?
+            <a href="./forgot_password.php">Sign up</a> 
         </p>
         <?php 
             if (isset($errMsg)) {

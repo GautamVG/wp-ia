@@ -1,7 +1,7 @@
 <?php include_once(dirname(__DIR__) . "/bootstrap.php") ?>
 
 <?php 
-    include_once(PROJECT_ROOT . "lib/redirect.php");
+    include_once(APP_ROOT . "lib/redirect.php");
 ?>
 
 <?php 

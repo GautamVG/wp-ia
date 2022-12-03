@@ -1,8 +1,8 @@
 <?php include_once(dirname(__DIR__) . "/bootstrap.php") ?>
 
 <?php 
-    include_once(PROJECT_ROOT . "lib/db.php");
-    include_once(PROJECT_ROOT . "lib/redirect.php");
+    include_once(APP_ROOT . "lib/db.php");
+    include_once(APP_ROOT . "lib/redirect.php");
 ?>
 
 <?php 
@@ -34,9 +34,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once(PROJECT_ROOT. "pages/head_base.php"); ?>
+    <?php include_once(APP_ROOT. "templates/head_base.html"); ?>
     <style> 
-        <?php include_once(PROJECT_ROOT . "styles/home.css"); ?>
+        <?php include_once(APP_ROOT . "/styles/home.css"); ?>
     </style>
     <title>Home | ZSchedule</title>
 </head>

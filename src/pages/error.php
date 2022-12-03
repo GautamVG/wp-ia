@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         <?php 
-            include_once(PROJECT_ROOT . "styles/base.css");
-            include_once(PROJECT_ROOT . "styles/error.css");
+            include_once(APP_ROOT . "styles/base.css");
+            include_once(APP_ROOT . "styles/error.css");
         ?>
     </style>
     <title>Error | ZSchedule</title>

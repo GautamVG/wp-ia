@@ -1,4 +1,4 @@
 <?php 
-    define("PROJECT_ROOT", __DIR__ . "/");
-    include_once(PROJECT_ROOT . "config.php");
+    define("APP_ROOT", __DIR__ . "/");
+    include_once(APP_ROOT . "config.php");
 ?>

@@ -1,8 +1,8 @@
 <?php include_once(dirname(__DIR__) . "/bootstrap.php") ?>
 
 <?php 
-    include_once(PROJECT_ROOT . "lib/db.php");
-    include_once(PROJECT_ROOT . "lib/redirect.php");
+    include_once(APP_ROOT . "lib/db.php");
+    include_once(APP_ROOT . "lib/redirect.php");
 ?>
 
 <?php 
@@ -67,8 +67,8 @@
     <title>Book a slot | ZSchedule</title>
     <style>
         <?php 
-            include_once(PROJECT_ROOT . "styles/base.css");
-            include_once(PROJECT_ROOT . "styles/book.css");
+            include_once(APP_ROOT . "styles/base.css");
+            include_once(APP_ROOT . "styles/book.css");
         ?>
     </style>
 </head>
