@@ -7,7 +7,7 @@
 
 <?php 
     session_start();
-    if (!(isset($_SESSION) && isset($_SESSION['svvid']))) Redirect\toLoginPage();
+    if (!(isset($_SESSION) && isset($_SESSION['userData']))) Redirect\toLoginPage();
 ?>
 
 <?php 
@@ -35,26 +35,12 @@
 <html lang="en">
 <head>
     <?php include_once(APP_ROOT. "templates/head_base.php"); ?>
-    <style> 
-        <?php include_once(APP_ROOT . "/styles/home.css"); ?>
-    </style>
+    <link rel="stylesheet" href="/public/styles/home.css">
     <title>Home | ZSchedule</title>
 </head>
 <body>
-    <div class="app-bar">
-        <div class="container">
-            <i class="ph-user-circle"></i>
-            <h3 class="app-bar-title">
-                <?php 
-                    echo $_SESSION['svvid']
-                ?>
-            </h3>
-            <a href="./logout.php" class="logout">
-                <i class="ph-sign-out"></i>
-            </a>
-        </div>
-    </div>
-    <main class="container">
+    <?php include_once(APP_ROOT. "templates/navbar.php"); ?>
+    <main class="mobile-container">
         <h1>Today's schedule</h1>
         <div class="slots">
             <?php 

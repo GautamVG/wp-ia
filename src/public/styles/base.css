@@ -1,6 +1,22 @@
 :root {
-	--primary100: #f3f1fe;
 	--primary: #927af4;
+	--primary100: #f3f1fe;
+	--primary150: #e7e2fd;
+	--primary200: #dbd3fb;
+	--primary250: #cfc5fa;
+	--primary300: #c3b6f9;
+	--primary350: #b7a7f8;
+	--primary400: #ab98f7;
+	--primary450: #9f8af5;
+	--primary500: #927af4;
+	--primary550: #7859f2;
+	--primary600: #5c38ef;
+	--primary650: #4116ec;
+	--primary700: #3611cd;
+	--primary750: #2d0eab;
+	--primary800: #250b8a;
+	--primary850: #1c0868;
+	--primary900: #130647;
 }
 
 * {
@@ -14,11 +30,11 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-flow: column;
-	justify-content: center;
 	align-items: center;
 }
 
 .mobile-container {
+	padding: 2em 1.5em;
 	width: min(480px, 90vw);
 }
 
@@ -37,4 +53,57 @@ input {
 	border-radius: 0.5em;
 	outline: none;
 	padding: 0.5em;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Appbar */
+
+.app-bar {
+	width: calc(100vw - 2em);
+	padding: 1em 1em;
+	background-color: var(--primary);
+	color: white;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+	gap: 1em;
+}
+
+.app-bar > * {
+	display: flex;
+	flex: row nowrap;
+	align-items: center;
+	gap: 1em;
+}
+
+.app-bar-title {
+	flex-grow: 1;
+	text-align: left;
+}
+
+.app-bar-leading i,
+.app-bar-actions i {
+	font-size: 1.5em;
+	color: white;
+}
+
+.app-bar-actions > * {
+	cursor: pointer;
+}
+
+.app-bar-actions .nav-item {
+	background-color: var(--primary800);
+	border-radius: 1em;
+	padding: 0.5em 1.5em;
+	display: flex;
+	flex: row nowrap;
+	align-items: center;
+}
+
+.app-bar-actions .nav-item.active {
+	background-color: var(--primary600);
 }

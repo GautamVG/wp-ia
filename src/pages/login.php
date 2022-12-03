@@ -10,7 +10,7 @@
     function signIn($svvid, $pwd) {
         $db = DB\connect();
         try {
-            $stmt = $db->prepare("SELECT * FROM `user` WHERE `svvid` = :svvid LIMIT 1");
+            $stmt = $db->prepare("SELECT name, svvid, pwd, label AS user_type_label FROM user, user_type WHERE svvid = :svvid AND user.type = user_type.id LIMIT 1;");
             $stmt->bindParam(":svvid", $svvid);
             $stmt->execute();
             $results = $stmt->fetchAll();
