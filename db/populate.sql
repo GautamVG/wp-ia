@@ -67,3 +67,25 @@ INSERT INTO `user` (
         3
     )
 ;
+
+INSERT INTO `ground_to_user` (
+    `user_svvid`,
+    `ground_id` 
+) VALUES 
+    (
+        'harshal.dave@somaiya.edu',
+        1
+    ),
+    (
+        'harshal.dave@somaiya.edu',
+        2
+    ),
+    (
+        'harshal.dave@somaiya.edu',
+        3
+    ),
+    (
+        'harshal.dave@somaiya.edu',
+        4
+    )
+;
