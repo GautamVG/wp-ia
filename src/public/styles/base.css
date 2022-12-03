@@ -18,6 +18,10 @@ body {
 	align-items: center;
 }
 
+.mobile-container {
+	width: min(480px, 90vw);
+}
+
 button,
 input[type="submit"] {
 	outline: none;

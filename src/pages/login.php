@@ -7,17 +7,15 @@
 ?>
 
 <?php 
-    function isValid($svvid, $pwd) {
+    function signIn($svvid, $pwd) {
         $db = DB\connect();
         try {
-            $stmt = $db->prepare("SELECT * FROM `user` WHERE `svvid` = ':svvid' LIMIT 1");
-            $stmt->bindParam(':svvid', $svvid);
-            $response = $stmt->execute();
-            if ($response) {
-                $results = $response->fetchAll();
-                if (count($results) > 0 && password_verify($pwd, $results[0]['pwd']))
-                    return true;
-            }
+            $stmt = $db->prepare("SELECT * FROM `user` WHERE `svvid` = :svvid LIMIT 1");
+            $stmt->bindParam(":svvid", $svvid);
+            $stmt->execute();
+            $results = $stmt->fetchAll();
+            if (count($results) > 0 && password_verify($pwd, $results[0]['pwd']))
+                return $results[0];
         } catch (Exception $err) {
             Redirect\toErrorPage($err->getMessage());
         }
@@ -29,11 +27,12 @@
         if (isset($_POST['svvid']) && isset($_POST['pwd'])) {
             $svvid = $_POST['svvid'];
             $pwd = $_POST['pwd'];
-            if (!isValid($svvid, $pwd)) {
+            $userData = signIn($svvid, $pwd);
+            if (!$userData) {
                 $errMsg = "Incorrect SVV ID or Password";
             } else {
                 session_start();
-                $_SESSION['svvid'] = $svvid;
+                $_SESSION['userData'] = $userData;
                 Redirect\toHomePage();
             }
         } else {
@@ -45,12 +44,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once(APP_ROOT. "templates/head_base.html"); ?>
+    <?php include_once(APP_ROOT. "templates/head_base.php"); ?>
     <link rel="stylesheet" href="/public/styles/login.css">
     <title>Login | ZSchedule</title>
 </head>
 <body>
-    <div class="container">
+    <div class="mobile-container">
         <h1>ZSchedule</h1>
         <h3>Welcome</h3>
         <form method="POST" />

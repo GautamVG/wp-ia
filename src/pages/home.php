@@ -34,7 +34,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include_once(APP_ROOT. "templates/head_base.html"); ?>
+    <?php include_once(APP_ROOT. "templates/head_base.php"); ?>
     <style> 
         <?php include_once(APP_ROOT . "/styles/home.css"); ?>
     </style>
