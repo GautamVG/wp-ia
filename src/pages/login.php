@@ -33,7 +33,7 @@
             } else {
                 session_start();
                 $_SESSION['userData'] = $userData;
-                Redirect\toHomePage();
+                Redirect\toBookingsPage();
             }
         } else {
             $errMsg = "Please fill all details";

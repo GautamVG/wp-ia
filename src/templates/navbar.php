@@ -19,9 +19,9 @@
     <div class="app-bar-actions">
         <a href="/pages/bookings.php">
             <div 
-                class=<?php 
+                class="<?php 
                     echo "nav-item " . ($currentPageFilename == "bookings" ? "active" : "inactive");
-                ?>
+                ?>"
             >
                 <i class="ph-bookmark"></i>
                 <span>Bookings</span>
@@ -29,9 +29,9 @@
         </a>
         <a href="/pages/grounds.php">
             <div 
-                class=<?php 
+                class="<?php 
                     echo "nav-item " . ($currentPageFilename == "grounds" ? "active" : "inactive");
-                ?>
+                ?>"
             >
                 <i class="ph-map-pin"></i>
                 <span>Ground</span>

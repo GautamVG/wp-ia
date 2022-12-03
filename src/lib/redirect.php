@@ -8,8 +8,13 @@
         die();
     }
 
-    function toHomePage() {
-        header("Location: ". APP_ROOT_URL . "/pages/home.php");
+    function toBookingsPage() {
+        header("Location: ". APP_ROOT_URL . "/pages/bookings.php");
+        die();
+    }
+
+    function toGroundsPage() {
+        header("Location: ". APP_ROOT_URL . "/pages/grounds.php");
         die();
     }
 
