@@ -15,9 +15,9 @@
     try {
         $slots = [];
         $date = date("Y:m:d");
-        $query = "SELECT `start_time`, `end_time`, `user`.`name` as `name`, `ground`.`name` as `ground_name` FROM `booking`, `user`, `ground` WHERE `svvid` = `user_svvid` AND `booking`.`ground` = `ground`.`id` AND `date` = '$date';";
-        $results = $db->query($query);
-        if ($results) $slots = $results->fetchAll();
+        // $query = "SELECT `start_time`, `end_time`, `user`.`name` as `name`, `ground`.`name` as `ground_name` FROM `booking`, `user`, `ground` WHERE `svvid` = `user_svvid` AND `booking`.`ground` = `ground`.`id` AND `date` = '$date';";
+        // $results = $db->query($query);
+        // if ($results) $slots = $results->fetchAll();
     } catch (Exception $err) {
         Redirect\toErrorPage($err->getMessage());
     }

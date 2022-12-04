@@ -36,6 +36,9 @@ body {
 .mobile-container {
 	padding: 2em 1.5em;
 	width: min(480px, 90vw);
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
 }
 
 button,
@@ -89,6 +92,13 @@ a {
 .app-bar-actions i {
 	font-size: 1.5em;
 	color: white;
+}
+
+.app-bar-leading img {
+	border-radius: 100%;
+	object-fit: cover;
+	width: 48px;
+	height: 48px;
 }
 
 .app-bar-actions > * {

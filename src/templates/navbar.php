@@ -1,11 +1,14 @@
 <?php 
     $currentPageFilename = pathinfo(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), PATHINFO_FILENAME);
-    $userIsAdmin = $_SESSION['userData']['userTypeLabel'] == "admin";
+    $userIsAdmin = $_SESSION['userData']['user_type_label'] == "admin";
 ?>
 
 <div class="app-bar">
     <div class="app-bar-leading">
-        <i class="ph-user-circle"></i>
+        <img 
+            src="<?php echo $_SESSION['userData']['photo'] ?>" 
+            alt="User Profile Picture"
+        />
     </div>
 
     <div class="app-bar-title">

@@ -2,6 +2,10 @@ body {
 	justify-content: center;
 }
 
+.mobile-container {
+	align-items: stretch;
+}
+
 h3 {
 	margin-bottom: 1em;
 }
