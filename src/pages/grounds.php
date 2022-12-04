@@ -16,24 +16,26 @@
         $managedGrounds = [];
         $grounds = [];
 
-        if ($_SESSION['userData']['userTypeLabel'] == "admin") {
+        if ($_SESSION['userData']['user_type_label'] == "admin") {
             // As an Admin
-            $query = "SELECT `ground`.*, `ground_to_user`.`user_svvid` as `manager_svvid`, `user`.`name` as `manager_name` FROM `ground`, `ground_to_user`, `user` WHERE `ground`.`id` = `ground_to_user`.`ground_id` AND `ground_to_user`.`user_svvid` = `user`.`svvid`" ;
+            $query = "SELECT `ground`.*, `user`.`name` as `manager_name` FROM `ground`, `user` WHERE `ground`.`manager_svvid` = `user`.`svvid`;";
             $stmt = $db->prepare($query);
             $stmt->execute();
             $managedGrounds = $stmt->fetchAll();
-        } else if ($_SESSION['userData']['userTypeLabel'] == "ground_manager") {
-            $query = " SELECT `ground`.*, `ground_to_user`.`user_svvid` as `manager_svvid`, `user`.`name` as `manager_name` FROM `ground`, `ground_to_user`, `user` WHERE `ground`.`id` = `ground_to_user`.`ground_id` AND `ground_to_user`.`user_svvid` = `user`.`svvid` AND `user`.`svvid` = :svvid ;";
+        } else if ($_SESSION['userData']['user_type_label'] == "ground_manager") {
+            $query = "SELECT `ground`.*, `user`.`name` as `manager_name` FROM `ground`, `user` WHERE `ground`.`manager_svvid` = `user`.`svvid` AND `ground`.`manager_svvid` = :svvid;";
             $stmt = $db->prepare($query);
+            $stmt->bindParam(":svvid", $_SESSION['userData']['svvid']);
             $stmt->execute();
             $managedGrounds = $stmt->fetchAll();
 
-            $query = " SELECT `ground`.*, `ground_to_user`.`user_svvid` as `manager_svvid`, `user`.`name` as `manager_name` FROM `ground`, `ground_to_user`, `user` WHERE `ground`.`id` = `ground_to_user`.`ground_id` AND `ground_to_user`.`user_svvid` = `user`.`svvid` AND `user`.`svvid` != :svvid ;";
+            $query = "SELECT `ground`.*, `user`.`name` as `manager_name` FROM `ground`, `user` WHERE `ground`.`manager_svvid` = `user`.`svvid` AND `ground`.`manager_svvid` != :svvid;";
             $stmt = $db->prepare($query);
+            $stmt->bindParam(":svvid", $_SESSION['userData']['svvid']);
             $stmt->execute();
             $grounds = $stmt->fetchAll();
         } else {
-            $query = " SELECT `ground`.*, `ground_to_user`.`user_svvid` as `manager_svvid`, `user`.`name` as `manager_name` FROM `ground`, `ground_to_user`, `user` WHERE `ground`.`id` = `ground_to_user`.`ground_id` AND `ground_to_user`.`user_svvid` = `user`.`svvid` ;";
+            $query = "SELECT `ground`.*, `user`.`name` as `manager_name` FROM `ground`, `user` WHERE `ground`.`manager_svvid` = `user`.`svvid`;";
             $stmt = $db->prepare($query);
             $stmt->execute();
             $grounds = $stmt->fetchAll();
@@ -52,38 +54,86 @@
 </head>
 <body>
     <?php include_once(APP_ROOT. "templates/navbar.php"); ?>
+
     <div class="mobile-container">
-        <div class="ground-card">
-            <div class="ground-photo">
-                <a href="/pages/new_ground.php">
-                    <i class="ph-plus"></i>
-                </a>
-            </div>
-            <div class="ground-name">New ground</div>
-            <div class="ground-manager">New ground</div>
-            <a href="/pages/new_ground.php" class="ground-card-action">
-                Add
-            </a>
-        </div>
+        <h1>College Grounds</h1>
 
         <?php 
-            foreach ($managedGrounds as $ground) {
-                ?> 
-                    <div class="card ground-card">
-                        <div class="ground-photo">
-                            <a href="/pages/view_ground.php">
-                                <i class="ph-plus"></i>
+            if ($_SESSION['userData']['user_type_label'] == "admin") {
+                ?>
+                    <div class="cards-grid">
+                        <div class="ground-card">
+                            <div class="ground-photo">
+                                <a href="/pages/new_ground.php">
+                                    <i class="ph-plus"></i>
+                                </a>
+                            </div>
+                            <div class="ground-name">New ground</div>
+                            <div class="ground-manager">New ground</div>
+                            <a href="/pages/new_ground.php" class="ground-card-action">
+                                Add
                             </a>
                         </div>
-                        <div class="ground-name">
-                            <?php echo $ground['name'] ?>
-                        </div>
-                        <div class="ground-manager">
-                            <?php echo $ground['manager_name'] ?>
-                        </div>
-                        <a href="/pages/new_ground.php" class="ground-card-action">
-                            View
-                        </a>
+                    </div>
+                <?php
+            }
+        ?>
+
+        <?php 
+            if (count($managedGrounds) > 0) {
+                ?> 
+                    <h2>Grounds managed by you</h2>
+                    <div class="cards-grid">
+                        <?php 
+                            foreach ($managedGrounds as $ground) {
+                                ?> 
+                                    <div class="card ground-card">
+                                        <div class="ground-photo">
+                                            <img src="<?php echo $ground['photo'] ?>" alt="Ground Photo" />
+                                        </div>
+                                        <div class="ground-name">
+                                            <?php echo $ground['name'] ?>
+                                        </div>
+                                        <div class="ground-manager">
+                                            <?php echo $ground['manager_name'] ?>
+                                        </div>
+                                        <a href="/pages/edit_ground.php" class="ground-card-action">
+                                            View
+                                        </a>
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                <?php
+            }
+        ?>
+
+        <?php 
+            if (count($grounds) > 0) {
+                ?> 
+                    <h2>All grounds</h2>
+                    <div class="cards-grid">
+                        <?php 
+                            foreach ($grounds as $ground) {
+                                ?> 
+                                    <div class="card ground-card">
+                                        <div class="ground-photo">
+                                            <img src="<?php echo $ground['photo'] ?>" alt="Ground Photo" />
+                                        </div>
+                                        <div class="ground-name">
+                                            <?php echo $ground['name'] ?>
+                                        </div>
+                                        <div class="ground-manager">
+                                            <?php echo $ground['manager_name'] ?>
+                                        </div>
+                                        <a href="/pages/view_ground.php" class="ground-card-action">
+                                            View
+                                        </a>
+                                    </div>
+                                <?php
+                            }
+                        ?>
                     </div>
                 <?php
             }
