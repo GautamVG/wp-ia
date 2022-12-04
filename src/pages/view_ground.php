@@ -89,6 +89,20 @@
                 <?php
             }
         ?>
+
+        <?php 
+            if ($ground['close_time'] != null || $ground['open_time'] != null) {
+                ?>
+                    <form action="/scripts/open_ground.php" method="POST" id="controls">
+                        <p>This ground is closed from 
+                            <?php echo $ground['close_time'] ?>
+                        to 
+                            <?php echo $ground['open_time'] ?>
+                        </p>
+                    </form>
+                <?php
+            } 
+        ?>
     </div>
 </body>
 </html>
