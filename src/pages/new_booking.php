@@ -27,8 +27,48 @@
             $date = date("Y:m:d");
             $svvid = $_SESSION['userData']['svvid'];
 
-            makeBooking($zoneId, $date, $startTime, $endTime, $svvid);
-            Redirect\toBookingsPage();
+            if ($startTime < $endTime) {
+                try {
+                    $db = DB\connect();
+
+                    $query = "SELECT count(*) as `count` FROM `zone`, `ground` WHERE `zone`.`id` = :zoneId AND `zone`.`ground_id` = `ground`.`id` AND `close_time` <= :endTime AND `open_time` >= :startTime;";
+                    $stmt = $db->prepare($query);
+                    $stmt->bindParam(":startTime", $startTime);
+                    $stmt->bindParam(":endTime", $endTime);
+                    $stmt->bindParam(":zoneId", $zoneId);
+                    $stmt->execute();
+                    $countOfSlotsOverlappingWithClosedGrounds = $stmt->fetchAll()[0]['count'];
+
+                    $query = "SELECT count(*) as `count` FROM `booking` WHERE `start_time` <= :endTime AND `end_time` >= :startTime;";
+                    $stmt = $db->prepare($query);
+                    $stmt->bindParam(":startTime", $startTime);
+                    $stmt->bindParam(":endTime", $endTime);
+                    $stmt->execute();
+                    $countOfOverlappingSlots = $stmt->fetchAll()[0]['count'];
+
+                    $query = "SELECT count(*) as `count` FROM `zone` WHERE `id` = :zoneId";
+                    $stmt = $db->prepare($query);
+                    $stmt->bindParam(":zoneId", $zoneId);
+                    $stmt->execute();
+                    $countOfMaxSlots = $stmt->fetchAll()[0]['count'];
+
+                    if ($countOfSlotsOverlappingWithClosedGrounds == 0) {
+                        if ($countOfOverlappingSlots <= $countOfMaxSlots) {
+                            makeBooking($zoneId, $date, $startTime, $endTime, $svvid);
+                            Redirect\toBookingsPage();
+                        } else {
+                            $errMsg = "The ground has reached maximum capacity in the chosen time slot";
+                        }
+                    } else {
+                        $errMsg = "The ground is closed in the chosen time slot";
+                    }
+                } catch (Exception $err) {
+                    Redirect\toErrorPage($err->getMessage());
+                }
+            } else {
+                $errMsg = "Please select a valid time";
+            }
+
         } else {
             $errMsg = "Please fill all details";
         }
@@ -132,6 +172,15 @@
             />
             <input type="submit" name="submit" />
         </form>
+        <?php 
+            if (isset($errMsg)) {
+                ?>
+                    <p class="err-msg">
+                        <?php echo $errMsg ?>
+                    </p>
+                <?php
+            }
+        ?>
     </div>
 </body>
 </html>

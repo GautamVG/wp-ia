@@ -21,3 +21,12 @@ form {
 i {
 	font-size: 1.5em;
 }
+
+.err-msg {
+	margin: 1em 0;
+	background-color: crimson;
+	color: white;
+	border-radius: 1em;
+	text-align: center;
+	padding: 0.7em;
+}
