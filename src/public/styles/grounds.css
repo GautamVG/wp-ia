@@ -1,7 +1,12 @@
 .mobile-container {
+	align-items: stretch;
+}
+
+.cards-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1em;
+	margin: 2em 0 4em 0;
 }
 
 .ground-card {
