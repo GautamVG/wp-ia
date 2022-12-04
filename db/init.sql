@@ -17,6 +17,7 @@ CREATE TABLE `user` (
     `photo` varchar(256) NOT NULL,
     `svvid` varchar(128) NOT NULL,
     `pwd` varchar(60) NOT NULL,
+    `pwd_reset_token` varchar(128) DEFAULT NULL,
     `type` int NOT NULL DEFAULT 3,
 
     PRIMARY KEY (`svvid`),
