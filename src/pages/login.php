@@ -7,6 +7,11 @@
 ?>
 
 <?php 
+    session_start();
+    if (isset($_SESSION) && isset($_SESSION['userData'])) Redirect\toBookingsPage();
+?>
+
+<?php 
     function signIn($svvid, $pwd) {
         $db = DB\connect();
         try {
@@ -61,7 +66,7 @@
         </form>
         <p>
             Forgot password?
-            <a href="./forgot_password.php">Sign up</a> 
+            <a href="./request_password_reset.php">Reset it</a> 
         </p>
         <?php 
             if (isset($errMsg)) {
