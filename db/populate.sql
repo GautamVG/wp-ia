@@ -13,52 +13,6 @@ INSERT INTO `user_type` (
         'student'
     );
 
-INSERT INTO `ground` (
-    `name`,
-    `photo`,
-    `manager_svvid`
-) VALUES 
-    (
-        'Marathon Track',
-        '/public/upload/grounds/b4950d389689c51bf579420f3544f895.jpg',
-        1
-    ),
-    (
-        'Badminton Court',
-        '/public/upload/grounds/73f86d031be77672c08d1e22f4570500.jpg',
-        1
-    ),
-    (
-        'Chess Board'
-        '/public/upload/grounds/91a953e0f76d407627420b1c0668324b.jpeg',
-        1
-    );
-
-INSERT INTO `zone` (
-    `name`,
-    `is_primary`,
-    `amenities`,
-    `ground_id`
-) VALUES 
-    (
-        'Marathon Track',
-        true,
-        'Running track',
-        1
-    ),
-    (
-        'Badminton Court',
-        true,
-        NULL,
-        3
-    ),
-    (
-        'Chess Board',
-        true,
-        NULL,
-        4
-    );
-
 INSERT INTO `user` (
     `name`, 
     `photo`,
@@ -104,3 +58,49 @@ INSERT INTO `user` (
         3
     )
 ;
+
+INSERT INTO `ground` (
+    `name`,
+    `photo`,
+    `manager_svvid`
+) VALUES 
+    (
+        'Marathon Track',
+        '/public/upload/grounds/b4950d389689c51bf579420f3544f895.jpg',
+        'harshal.dave@somaiya.edu'
+    ),
+    (
+        'Badminton Court',
+        '/public/upload/grounds/73f86d031be77672c08d1e22f4570500.jpg',
+        'harshal.dave@somaiya.edu'
+    ),
+    (
+        'Chess Board',
+        '/public/upload/grounds/91a953e0f76d407627420b1c0668324b.jpeg',
+        'harshal.dave@somaiya.edu'
+    );
+
+INSERT INTO `zone` (
+    `name`,
+    `is_primary`,
+    `amenities`,
+    `ground_id`
+) VALUES 
+    (
+        'Marathon Track',
+        true,
+        'Running track',
+        1
+    ),
+    (
+        'Badminton Court',
+        true,
+        NULL,
+        2
+    ),
+    (
+        'Chess Board',
+        true,
+        NULL,
+        3
+    );
