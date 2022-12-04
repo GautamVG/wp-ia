@@ -11,12 +11,33 @@ CREATE TABLE `user_type` (
     PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+    `name` text NOT NULL,
+    `photo` varchar(256) NOT NULL,
+    `svvid` varchar(128) NOT NULL,
+    `pwd` varchar(60) NOT NULL,
+    `type` int NOT NULL DEFAULT 3,
+
+    PRIMARY KEY (`svvid`),
+    FOREIGN KEY (`type`) 
+        REFERENCES `user_type` (`id`)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS `ground`;
 CREATE TABLE `ground` (
     `id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(60) NOT NULL,
+    `photo` varchar(256) NOT NULL,
+    `manager_svvid` varchar(128) NOT NULL,
 
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`manager_svvid`)
+        REFERENCES `user` (`svvid`)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS `zone`;
@@ -31,20 +52,6 @@ CREATE TABLE `zone` (
     FOREIGN KEY (`ground_id`) 
         REFERENCES `ground` (`id`)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
-
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-    `name` text NOT NULL,
-    `svvid` varchar(128) NOT NULL,
-    `pwd` varchar(60) NOT NULL,
-    `type` int NOT NULL DEFAULT 3,
-
-    PRIMARY KEY (`svvid`),
-    FOREIGN KEY (`type`) 
-        REFERENCES `user_type` (`id`)
-        ON DELETE RESTRICT
         ON UPDATE CASCADE
 );
 
