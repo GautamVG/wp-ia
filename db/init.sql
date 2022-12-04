@@ -45,6 +45,7 @@ CREATE TABLE `zone` (
     `id` int NOT NULL AUTO_INCREMENT,
     `name` varchar(60) NOT NULL,
     `is_primary` boolean NOT NULL DEFAULT false,
+    `is_multi_zonal` boolean DEFAULT NULL,
     `amenities` text,
     `ground_id` int NOT NULL,
 

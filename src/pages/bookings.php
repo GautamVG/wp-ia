@@ -13,11 +13,12 @@
 <?php 
     $db = DB\connect();
     try {
-        $slots = [];
         $date = date("Y:m:d");
-        // $query = "SELECT `start_time`, `end_time`, `user`.`name` as `name`, `ground`.`name` as `ground_name` FROM `booking`, `user`, `ground` WHERE `svvid` = `user_svvid` AND `booking`.`ground` = `ground`.`id` AND `date` = '$date';";
-        // $results = $db->query($query);
-        // if ($results) $slots = $results->fetchAll();
+        $query = "SELECT `start_time`, `end_time`, `user`.`name` as `booker_name`, `ground`.`name` as `ground_name`, `zone`.`name` as `zone_name`, `zone`.`is_primary` as `is_zone_primary` FROM `booking`, `user`, `zone`, `ground` WHERE `date` = :date AND `booking`.`user_svvid` = `user`.`svvid` AND `booking`.`zone_id` = `zone`.`id` AND `zone`.`ground_id` = `ground`.`id`;";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":date", $date);
+        $stmt->execute();
+        $slots = $stmt->fetchAll();
     } catch (Exception $err) {
         Redirect\toErrorPage($err->getMessage());
     }
@@ -35,7 +36,7 @@
 <html lang="en">
 <head>
     <?php include_once(APP_ROOT. "templates/head_base.php"); ?>
-    <link rel="stylesheet" href="/public/styles/home.css">
+    <link rel="stylesheet" href="/public/styles/bookings.css">
     <title>Home | ZSchedule</title>
 </head>
 <body>
@@ -75,7 +76,7 @@
                                     <div class="booking-details">
                                         <p>Booked by</p>
                                         <h3>
-                                            <?php echo $slot['name'] ?>
+                                            <?php echo $slot['booker_name'] ?>
                                         </h3>
                                     </div>
                                 </div>
@@ -83,7 +84,12 @@
                                     <div class="ground-name">
                                         <i class="ph-map-pin"></i>
                                         <p>
-                                            <?php echo $slot['ground_name'] ?>
+                                            <?php 
+                                                if ($slot['is_zone_primary'])
+                                                    echo $slot['ground_name'];
+                                                else
+                                                    echo($slot['ground_name'] . "(" . $slot['zone_name'] . ")");
+                                            ?>
                                         </p>
                                     </div>
                                 </div>
@@ -93,7 +99,7 @@
                 }
             ?>
         </div>
-        <a href="./book.php" class="book-btn">Book a slot</a>
+        <a href="./new_booking.php" class="book-btn">Book a slot</a>
     </main>
 </body>
 </html>

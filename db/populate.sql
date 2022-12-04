@@ -83,24 +83,28 @@ INSERT INTO `ground` (
 INSERT INTO `zone` (
     `name`,
     `is_primary`,
+    `is_multi_zonal`,
     `amenities`,
     `ground_id`
 ) VALUES 
     (
         'Marathon Track',
         true,
+        false,
         'Running track',
         1
     ),
     (
         'Badminton Court',
         true,
+        false,
         NULL,
         2
     ),
     (
         'Chess Board',
         true,
+        false,
         NULL,
         3
     );

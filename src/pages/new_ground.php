@@ -49,9 +49,10 @@
     function createPrimaryZone($groundId) {
         try {
             $db = DB\connect();
-            $query = "INSERT INTO `zone` (`name`, `is_primary`, `amenities`, `ground_id`) VALUES (:name, true, :amenities, :groundId);";
+            $query = "INSERT INTO `zone` (`name`, `is_primary`, `is_multi_zonal`, `amenities`, `ground_id`) VALUES (:name, true, :is_multi_zonal, :amenities, :groundId);";
             $stmt = $db->prepare($query);
             $stmt->bindParam(":name", $_POST['ground-name']);
+            $stmt->bindValue(":is_multi_zonal", isset($_POST['ground-multi-zone']));
             $stmt->bindParam(":amenities", $_POST['amenities']);
             $stmt->bindParam(":groundId", $groundId);
             $stmt->execute();

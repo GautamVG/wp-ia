@@ -1,3 +1,7 @@
+.mobile-container {
+	align-items: stretch;
+}
+
 main {
 	flex-grow: 1;
 	padding: 1em 0 2em 0;
