@@ -97,8 +97,8 @@
                                         <div class="ground-manager">
                                             <?php echo $ground['manager_name'] ?>
                                         </div>
-                                        <a href="/pages/edit_ground.php" class="ground-card-action">
-                                            View
+                                        <a href="/pages/edit_ground.php?g=<?php echo $ground['id'] ?>" class="ground-card-action">
+                                            Edit
                                         </a>
                                     </div>
                                 <?php
@@ -127,7 +127,7 @@
                                         <div class="ground-manager">
                                             <?php echo $ground['manager_name'] ?>
                                         </div>
-                                        <a href="/pages/view_ground.php" class="ground-card-action">
+                                        <a href="/pages/view_ground.php?g=<?php echo $ground['id'] ?>" class="ground-card-action">
                                             View
                                         </a>
                                     </div>

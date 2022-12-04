@@ -41,6 +41,8 @@ form .form-element.inline {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 #selected-image-box i {

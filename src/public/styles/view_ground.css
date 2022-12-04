@@ -1,0 +1,22 @@
+.mobile-container {
+	align-items: stretch;
+}
+
+.mobile-container h1 {
+	margin-bottom: 1em;
+}
+
+.mobile-container h3,
+.mobile-container h2 {
+	margin: 1.5em 0 0.5em 0;
+}
+
+.mobile-container img {
+	border-radius: 1em;
+	height: 250px;
+	object-fit: cover;
+}
+
+#ground-zones .segment h3 {
+	color: var(--primary);
+}
