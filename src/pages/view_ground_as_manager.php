@@ -7,7 +7,7 @@
 
 <?php 
     session_start();
-    if (!(isset($_SESSION) && isset($_SESSION['userData']))) Redirect\toLoginPage();
+    if (!(isset($_SESSION) && isset($_SESSION['userData']) && $_SESSION['userData']['user_type_label'] == "ground_manager")) Redirect\toLoginPage();
 ?>
 
 <?php 
@@ -86,6 +86,46 @@
                             }
                         ?>
                     </div>
+                <?php
+            }
+        ?>
+
+        <?php 
+            if ($ground['close_time'] != null || $ground['open_time'] != null) {
+                ?>
+                    <form action="/scripts/open_ground.php" method="POST" id="controls">
+                        <p>This ground is closed from 
+                            <?php echo $ground['close_time'] ?>
+                        to 
+                            <?php echo $ground['open_time'] ?>
+                        </p>
+                        <input type="hidden" name="ground-id" value="<?php echo $_GET['g'] ?>">
+                        <input type="submit" name="submit" value="Open now" />
+                    </form>
+                <?php
+            } else {
+                ?> 
+                    <form action="/scripts/close_ground.php" method="POST" id="controls">
+                        <h3>Close the ground</h3>
+                        <div class="top-row">
+                            <div class="form-element">
+                                <label class="form-label">Closing time</label>
+                                <input 
+                                    type="time" 
+                                    name="close-time" 
+                                />
+                            </div>
+                            <div class="form-element">
+                                <label class="form-label">Opening time</label>
+                                <input 
+                                    type="time" 
+                                    name="open-time" 
+                                />
+                            </div>
+                        </div>
+                        <input type="hidden" name="ground-id" value="<?php echo $_GET['g'] ?>">
+                        <input type="submit" name="submit" />
+                    </form>
                 <?php
             }
         ?>
