@@ -32,6 +32,8 @@ CREATE TABLE `ground` (
     `name` varchar(60) NOT NULL,
     `photo` varchar(256) NOT NULL,
     `manager_svvid` varchar(128) NOT NULL,
+    `close_time` time DEFAULT NULL,
+    `open_time` time DEFAULT NULL,
 
     PRIMARY KEY (`id`),
     FOREIGN KEY (`manager_svvid`)
