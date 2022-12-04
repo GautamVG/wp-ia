@@ -80,3 +80,18 @@ main {
 	gap: 0.5em;
 	color: var(--primary);
 }
+
+form {
+	display: flex;
+	flex-flow: row;
+	align-items: center;
+	gap: 1em;
+}
+
+form > input {
+	flex: 2;
+}
+
+form > input[type="submit"] {
+	flex: 1;
+}

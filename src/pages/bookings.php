@@ -13,7 +13,8 @@
 <?php 
     $db = DB\connect();
     try {
-        $date = date("Y:m:d");
+        $date = date("Y/m/d");
+        if (isset($_POST['filter'])) $date = $_POST['date'];
         $query = "SELECT `start_time`, `end_time`, `user`.`name` as `booker_name`, `ground`.`name` as `ground_name`, `zone`.`name` as `zone_name`, `zone`.`is_primary` as `is_zone_primary` FROM `booking`, `user`, `zone`, `ground` WHERE `date` = :date AND `booking`.`user_svvid` = `user`.`svvid` AND `booking`.`zone_id` = `zone`.`id` AND `zone`.`ground_id` = `ground`.`id`;";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":date", $date);
@@ -43,6 +44,7 @@
     <?php include_once(APP_ROOT. "templates/navbar.php"); ?>
     <main class="mobile-container">
         <h1>Today's schedule</h1>
+        <h3> <?php echo $date ?> </h3>
         <div class="slots">
             <?php 
                 if (count($slots) == 0) {
@@ -99,7 +101,20 @@
                 }
             ?>
         </div>
-        <a href="./new_booking.php" class="book-btn">Book a slot</a>
+        <?php 
+            if ($_SESSION['userData']['user_type_label'] == "student") {
+                ?>
+                    <a href="./new_booking.php" class="book-btn">Book a slot</a>
+                <?php
+            } else {
+                ?>
+                    <form method="POST">
+                        <input type="date" name="date">
+                        <input type="submit" name="filter" value="View">
+                    </form>
+                <?php
+            }
+        ?>
     </main>
 </body>
 </html>
