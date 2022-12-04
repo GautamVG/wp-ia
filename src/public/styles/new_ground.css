@@ -1,0 +1,49 @@
+.mobile-container {
+	align-items: stretch;
+}
+
+h1 {
+	margin-bottom: 1em;
+}
+
+form {
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1.5em;
+}
+
+form .form-element {
+	display: flex;
+	flex-flow: column;
+	gap: 1em;
+}
+
+form .form-element.inline {
+	flex-flow: row;
+	align-items: center;
+	gap: 1em;
+}
+
+#ground-zones {
+	display: flex;
+	flex-flow: column;
+	gap: 1em;
+}
+
+#add-ground-zone {
+	align-self: flex-end;
+}
+
+#selected-image-box {
+	border-radius: 1em;
+	border: 1px var(--primary) solid;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#selected-image-box i {
+	font-size: 3em;
+	color: white;
+}
