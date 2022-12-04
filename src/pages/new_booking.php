@@ -56,7 +56,7 @@
     $zones = [];
     $db = DB\connect();
     try {
-        $query = "SELECT `zone`.*, `ground`.`name` as `ground_name` FROM `zone`, `ground` WHERE (`zone`.`is_primary` = false OR `zone`.`is_multi_zonal` = false) AND `ground`.`id` = `zone`.`ground_id`";
+        $query = "SELECT `zone`.*, `ground`.`name` as `ground_name`, `ground`.`close_time`, `ground`.`open_time` FROM `zone`, `ground` WHERE (`zone`.`is_primary` = false OR `zone`.`is_multi_zonal` = false) AND `ground`.`id` = `zone`.`ground_id`";
         $stmt = $db->prepare($query);
         $stmt->execute();
         $zones = $stmt->fetchAll();
@@ -73,52 +73,65 @@
     <title>Book a slot | ZSchedule</title>
 </head>
 <body>
-    <h1>New Booking</h1>
-    <form method="POST">
-        <label class="form-label">
-            Select a ground
-        </label>
-        <?php 
-            if (count($zones) == 0) {
-                ?> 
-                    <p>No grounds available right now, please try again later</p>
-                <?php
-            } else {
-                foreach ($zones as $zone) {
-                    ?>
-                        <div class="radio-btn">
-                            <input
-                                type="radio"
-                                id=<?php echo $zone['id'] ?>
-                                name="zoneId"
-                                value=<?php echo $zone['id'] ?>
-                            />
-                            <label 
-                                for=<?php echo $zone['id'] ?>
-                            >
-                                <?php 
-                                    if ($zone['is_primary'])
-                                        echo $zone['ground_name'];
-                                    else 
-                                        echo ($zone['ground_name'] . " => " . $zone['name']);
-                                ?>
-                            </label>
-                        </div>
+    <?php include_once(APP_ROOT. "templates/navbar.php"); ?>
+    <div class="mobile-container">
+        <h1>New Booking</h1>
+        <form method="POST">
+            <label class="form-label">
+                Select a ground
+            </label>
+            <?php 
+                if (count($zones) == 0) {
+                    ?> 
+                        <p>No grounds available right now, please try again later</p>
                     <?php
+                } else {
+                    foreach ($zones as $zone) {
+                        ?>
+                            <div class="radio-btn">
+                                <input
+                                    type="radio"
+                                    id=<?php echo $zone['id'] ?>
+                                    name="zoneId"
+                                    value=<?php echo $zone['id'] ?>
+                                />
+                                <label 
+                                    for=<?php echo $zone['id'] ?>
+                                >
+                                    <?php 
+                                        if ($zone['is_primary'])
+                                            echo (
+                                                $zone['ground_name'] . 
+                                                ($zone['close_time'] == null || $zone['open_time'] == null ?
+                                                    " " :
+                                                    " (Closed from " . $zone['close_time'] . " to " . $zone['open_time'] . ")")
+                                            );
+                                        else 
+                                            echo (
+                                                $zone['ground_name'] . " => " . $zone['name'] .
+                                                ($zone['close_time'] == null || $zone['open_time'] == null ?
+                                                    " " :
+                                                    " (Closed from " . $zone['close_time'] . " to " . $zone['open_time'] . ")")
+                                            );
+                                    ?>
+                                </label>
+                            </div>
+                        <?php
+                    }
                 }
-            }
-        ?>
-        <label class="form-label">Pick a start time</label>
-        <input 
-            type="time" 
-            name="startTime" 
-        />
-        <label class="form-label">Pick an end time</label>
-        <input 
-            type="time" 
-            name="endTime" 
-        />
-        <input type="submit" name="submit" />
-    </form>
+            ?>
+            <label class="form-label">Pick a start time</label>
+            <input 
+                type="time" 
+                name="startTime" 
+            />
+            <label class="form-label">Pick an end time</label>
+            <input 
+                type="time" 
+                name="endTime" 
+            />
+            <input type="submit" name="submit" />
+        </form>
+    </div>
 </body>
 </html>

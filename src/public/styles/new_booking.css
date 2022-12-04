@@ -1,3 +1,7 @@
+.mobile-container {
+	align-items: stretch;
+}
+
 h1 {
 	margin-bottom: 1em;
 }
