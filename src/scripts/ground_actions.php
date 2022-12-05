@@ -20,8 +20,6 @@
         return "/public/upload/grounds/" . $newFilename;
     }
 
-    print_r($_POST);
-
     if (isset($_POST["delete"])) {
         $groundId = $_POST["delete"];
         try {
@@ -71,6 +69,7 @@
             $stmt->bindParam(":groundId", $groundId);
             $stmt->bindParam(":groundName", $_POST["ground-name"]);
             $stmt->bindParam(":managerSVVID", $_POST["ground-manager-svvid"]);
+            $stmt->execute();
 
             $query = "UPDATE `zone` SET `name` = :groundName, `amenities` = :groundAmenities WHERE `ground_id` = :groundId AND `is_primary` = true;";
             $stmt = $db->prepare($query);

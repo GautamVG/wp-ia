@@ -14,7 +14,8 @@
     <div class="app-bar-title">
         <h3>
             <?php 
-                echo explode("@", $_SESSION['userData']['svvid'])[0];
+                // echo explode("@", $_SESSION['userData']['svvid'])[0];
+                echo $_SESSION['userData']['name'];
             ?>
         </h3>
     </div>

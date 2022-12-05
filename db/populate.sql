@@ -29,12 +29,13 @@ INSERT INTO `user` (
         1
     ),
     -- Ground Managers
-    -- (
-    --     'Pramod Dubey',
-    --     'pramod.dubey@somaiya',
-    --     '$2y$10$126FLlbA1k6qFfTQaOJiG.CaaRPqfVPD02sGfeF.sZTPNUVsBdoYq',
-    --     2
-    -- ),
+    (
+        'Pramod Dubey',
+        '/public/upload/profile-pics/c87222ee85603e3c2b11435eae15d5a1.jpg',
+        'pramod.dubey@somaiya.edu',
+        '$2y$10$b0cCmRCIYaPfeG4ke7RCIenWXeELoBZT5xuva6eOanZyRpCn54cMG', -- dubeyji
+        2
+    ),
     (
         'Harshal Dave',
         '/public/upload/profile-pics/e488185f5b5d23f6981637885cb7d752.webp',
@@ -55,6 +56,20 @@ INSERT INTO `user` (
         '/public/upload/profile-pics/0fc14b1f858f1b6c24021dd1f13f5070.jpg',
         'c.shukla@somaiya.edu',
         '$2y$10$sApKlFh.LbeFeIBroW.dne4sGi0/WNVaO.40z304V9TCKnlpj0P7y', -- purplelove
+        3
+    ),
+    (
+        'Chandrashekhar Dubey',
+        '/public/upload/profile-pics/6fa1be0d4dabfc158e39230eb3e2cd1d.png',
+        'suraj.p@somaiya.edu',
+        '$2y$10$P0rbd.r5Yx.YoNi2oXb5q.tZuqPOhWs707/AafFYZlhoASsgSJlvm', -- chatbot
+        3
+    ),
+    (
+        'Rati Shankar Shukla',
+        '/public/upload/profile-pics/b996de93c5172853721baf35689fd02d.jpeg',
+        'rati.shankar@somaiya.edu',
+        '$2y$10$2rP/Hs7PZMtPETIWpckDRecVgLFJhF02nkMl7I4CPokEpRQguaks.', -- rati_123_shankar
         3
     )
 ;
@@ -77,7 +92,7 @@ INSERT INTO `ground` (
     (
         'Chess Board',
         '/public/upload/grounds/91a953e0f76d407627420b1c0668324b.jpeg',
-        'harshal.dave@somaiya.edu'
+        'pramod.dubey@somaiya.edu'
     );
 
 INSERT INTO `zone` (
@@ -88,23 +103,61 @@ INSERT INTO `zone` (
     `ground_id`
 ) VALUES 
     (
-        'Marathon Track',
+        'Main Ground',
         true,
-        false,
-        'Running track',
+        true,
+        NULL,
         1
     ),
     (
+        'Running Track',
+        false,
+        NULL,
+        '100m, 200m, 400m, 800, Stop watch, gun, flags',
+        1
+    ),
+    (
+        'Long jump',
+        false,
+        NULL,
+        'There is a pit of sand in which you fall. That is it.',
+        1
+    ),
+    (
+        'Football',
+        false,
+        NULL,
+        'Soccer ball, shin pads, air pump, sturds',
+        1
+    ),
+
+    (
         'Badminton Court',
         true,
+        true,
+        'Indoor Badminton Court',
+        2
+    ),
+    (
+        'Professional Court',
         false,
+        NULL,
         NULL,
         2
     ),
     (
+        'Casual Court',
+        false,
+        NULL,
+        NULL,
+        2
+    ),
+
+    (
         'Chess Board',
         true,
         false,
-        NULL,
+        'Life size chessboard, cozy and quiet place, multiple regular sized chessboards and pieces available',
         3
-    );
+    )
+;
