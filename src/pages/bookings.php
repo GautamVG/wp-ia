@@ -13,11 +13,14 @@
 <?php 
     $db = DB\connect();
     try {
+        date_default_timezone_set("Indian/Maldives");
         $date = date("Y/m/d");
+        $time = $_SESSION['userData']['user_type_label'] == "student" ? date("H:i:s") : "00:00:00";
         if (isset($_POST['filter'])) $date = $_POST['date'];
-        $query = "SELECT `start_time`, `end_time`, `user`.`name` as `booker_name`, `ground`.`name` as `ground_name`, `zone`.`name` as `zone_name`, `zone`.`is_primary` as `is_zone_primary` FROM `booking`, `user`, `zone`, `ground` WHERE `date` = :date AND `booking`.`user_svvid` = `user`.`svvid` AND `booking`.`zone_id` = `zone`.`id` AND `zone`.`ground_id` = `ground`.`id`;";
+        $query = "SELECT `start_time`, `end_time`, `user`.`name` as `booker_name`, `ground`.`name` as `ground_name`, `zone`.`name` as `zone_name`, `zone`.`is_primary` as `is_zone_primary` FROM `booking`, `user`, `zone`, `ground` WHERE `date` = :date AND `start_time` > :time AND `booking`.`user_svvid` = `user`.`svvid` AND `booking`.`zone_id` = `zone`.`id` AND `zone`.`ground_id` = `ground`.`id` ORDER BY `start_time`";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":date", $date);
+        $stmt->bindParam(":time", $time);
         $stmt->execute();
         $slots = $stmt->fetchAll();
     } catch (Exception $err) {
