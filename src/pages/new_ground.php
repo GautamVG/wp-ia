@@ -53,7 +53,7 @@
             $stmt = $db->prepare($query);
             $stmt->bindParam(":name", $_POST['ground-name']);
             $stmt->bindValue(":is_multi_zonal", isset($_POST['ground-multi-zone']));
-            $stmt->bindParam(":amenities", $_POST['amenities']);
+            $stmt->bindParam(":amenities", $_POST['ground-amenities']);
             $stmt->bindParam(":groundId", $groundId);
             $stmt->execute();
         } catch (Exception $err) {
@@ -100,6 +100,7 @@
                 foreach ($zones as $zone) {
                     createZone($createdGroundId, $zone['name'], $zone['amenities']);
                 }
+                Redirect\toGroundsPage();
             }
         } else {
             $errMsg = "Please fill all details";
@@ -205,7 +206,7 @@
                 parent.innerHTML += groundZonesFormElementsHTML;
                 document.getElementById("add-ground-zone").addEventListener("click", (e) => {
                     const elem = document.createElement("div");
-                    console.log(elem.firstChild);
+                    elem.innerHTML = groundZoneFormElementHTML(parent.children.length);
                     parent.appendChild(elem);
                 })
             } else {
