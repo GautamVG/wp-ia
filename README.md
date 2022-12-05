@@ -22,12 +22,12 @@ Inside the mysql shell
 
 Create a file named `config.php` in the root folder. \
 A `config.example.php` is already present for convenience. \
-It contains the defaults for a local MySQL server installation. \
-You may or may not need to change its values.
+It contains the defaults for a local MySQL server installation. You may or may not need to change its values. \
+You must add a working email address from google and its password. The account must have the "less secure" option turned on in the google account settings.
 
 ## Run the server
 
-Steps may be different for the server application that you use. \
+Steps may be different for the server application that you use.
 
 ### For use with XAMPP using Apache
 
