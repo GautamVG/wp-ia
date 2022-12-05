@@ -35,7 +35,17 @@ Change the server config to serve the project's root folder using a new virtual 
 Add the following lines to `httpd.conf`
 
 ```
-	// TODO
+<VirtualHost localhost:80>
+    ServerName zschedule.com
+    DocumentRoot "C:/xampp/htdocs/path/to/zschedule_php/src"
+
+    <Directory "C:/xampp/htdocs/path/to/zschedule_php/src">
+        Options -Indexes +FollowSymLinks
+    </Directory>
+
+    RewriteEngine on
+    RewriteRule "^/$" "/pages/login.php"
+</VirtualHost>
 ```
 
 If you want a custom local domain like `http://zschedule.com`, then:
