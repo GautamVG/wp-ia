@@ -12,11 +12,12 @@
 <?php 
     function requestPasswordResetToken($svvid) {
         $token = bin2hex(random_bytes(15)) . time();
+        $hashedToken = password_hash($token, PASSWORD_BCRYPT);
         try {
             $db = DB\connect();
             $query = "UPDATE `user` SET `pwd_reset_token` = :token WHERE `svvid` = :svvid";
             $stmt = $db->prepare($query);
-            $stmt->bindParam(":token", $token);
+            $stmt->bindParam(":token", $hashedToken);
             $stmt->bindParam(":svvid", $svvid);
             $stmt->execute();
             return $token;

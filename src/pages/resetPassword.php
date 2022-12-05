@@ -13,12 +13,16 @@
 
         try {
             $db = DB\connect();
-            $query = "SELECT * FROM `user` WHERE `svvid` = :svvid AND `pwd_reset_token` = :token";
+            $query = "SELECT `pwd_reset_token` FROM `user` WHERE `svvid` = :svvid LIMIT 1;";
             $stmt = $db->prepare($query);
             $stmt->bindParam(":svvid", $svvid);
-            $stmt->bindParam(":token", $token);
             $stmt->execute();
-            if (count($stmt->fetchAll()) == 0) return false;
+            $results = $stmt->fetchAll();
+            if (count($results) == 0) {
+                return false;
+            }
+            $tokenHash = $results[0]['pwd_reset_token'];
+            return password_verify($token, $tokenHash);
         } catch (Exception $err) {
             Redirect\toErrorPage($err->getMessage());
         }
@@ -84,7 +88,7 @@
                         <?php
                     } else {
                         ?> 
-                            <h1>This reset link has expired</h1>
+                            <h1>This reset link is invalid</h1>
                         <?php
                     }
                 } else {
