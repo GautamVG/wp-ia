@@ -40,7 +40,7 @@
                 <span>Ground</span>
             </div>
         </a>
-        <a href="/pages/logout.php">
+        <a href="/scripts/logout.php">
             <i class="ph-sign-out"></i>
         </a>
     </div>
