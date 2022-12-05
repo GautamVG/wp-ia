@@ -32,10 +32,19 @@ main {
 }
 
 .slot {
+	position: relative;
 	border-radius: 0.5em;
 	border: 2px var(--primary) solid;
 	display: flex;
 	flex-flow: column nowrap;
+}
+
+.delete-btn {
+	position: absolute;
+	bottom: 0;
+	right: 0.5em;
+	color: crimson;
+	font-size: 1em;
 }
 
 .slot > .top {

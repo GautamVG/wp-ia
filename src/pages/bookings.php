@@ -17,7 +17,7 @@
         $date = date("Y/m/d");
         $time = $_SESSION['userData']['user_type_label'] == "student" ? date("H:i:s") : "00:00:00";
         if (isset($_POST['filter'])) $date = $_POST['date'];
-        $query = "SELECT `start_time`, `end_time`, `user`.`name` as `booker_name`, `ground`.`name` as `ground_name`, `zone`.`name` as `zone_name`, `zone`.`is_primary` as `is_zone_primary` FROM `booking`, `user`, `zone`, `ground` WHERE `date` = :date AND `start_time` > :time AND `booking`.`user_svvid` = `user`.`svvid` AND `booking`.`zone_id` = `zone`.`id` AND `zone`.`ground_id` = `ground`.`id` ORDER BY `start_time`";
+        $query = "SELECT `booking`.`id`, `start_time`, `end_time`, `user`.`name` as `booker_name`, `user`.`svvid` as `booker_svvid`, `ground`.`name` as `ground_name`, `zone`.`name` as `zone_name`, `zone`.`is_primary` as `is_zone_primary` FROM `booking`, `user`, `zone`, `ground` WHERE `date` = :date AND `start_time` > :time AND `booking`.`user_svvid` = `user`.`svvid` AND `booking`.`zone_id` = `zone`.`id` AND `zone`.`ground_id` = `ground`.`id` ORDER BY `start_time`";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":date", $date);
         $stmt->bindParam(":time", $time);
@@ -93,11 +93,25 @@
                                                 if ($slot['is_zone_primary'])
                                                     echo $slot['ground_name'];
                                                 else
-                                                    echo($slot['ground_name'] . "(" . $slot['zone_name'] . ")");
+                                                    echo($slot['ground_name'] . " (" . $slot['zone_name'] . ")");
                                             ?>
                                         </p>
                                     </div>
                                 </div>
+                                <?php 
+                                    if ($slot['booker_svvid'] == $_SESSION['userData']['svvid']) {
+                                        ?>
+                                            <a 
+                                                class="delete-btn"
+                                                href=<?php 
+                                                    echo("/scripts/delete_booking.php?booking-id=" . $slot["id"]);
+                                                ?>
+                                            >
+                                                <i class="ph-trash"></i>
+                                            </a>
+                                        <?php
+                                    }
+                                ?>
                             </div>
                         <?php
                     }

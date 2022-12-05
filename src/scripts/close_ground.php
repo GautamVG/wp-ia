@@ -19,12 +19,8 @@
             $db = DB\connect();
             $query = "UPDATE `ground` SET `close_time` = :closeTime, `open_time` = :openTime WHERE `id` = :groundId;";
             $stmt = $db->prepare($query);
-            print_r($_POST);
             $closeTime = date_create_from_format("H:i", $_POST['close-time'])->format("H:i:s");
             $openTime = date_create_from_format("H:i", $_POST['open-time'])->format("H:i:s");
-            print_r($closeTime);
-            print_r($openTime);
-
 
             $stmt->bindParam(":closeTime", $closeTime);
             $stmt->bindParam(":openTime", $openTime);
@@ -32,7 +28,7 @@
             $stmt->execute();
             Redirect\toGroundsPage();
         } catch (Exception $err) {
-            // Redirect\toErrorPage($err->getMessage());
+            Redirect\toErrorPage($err->getMessage());
         }
     } else {
         Redirect\toErrorPage("Incorrect request parameters");
