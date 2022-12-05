@@ -80,7 +80,8 @@
     if (isset($_POST['submit'])) {
         if (
             isset($_POST['ground-name']) && $_POST['ground-name'] != "" &&
-            isset($_POST['ground-manager-svvid']) && $_POST['ground-manager-svvid'] != ""
+            isset($_POST['ground-manager-svvid']) && $_POST['ground-manager-svvid'] != "" && 
+            filter_var($_POST['ground-manager-svvid'], FILTER_VALIDATE_EMAIL)
         ) {
             $createdGroundId = createGround();
             createPrimaryZone($createdGroundId);

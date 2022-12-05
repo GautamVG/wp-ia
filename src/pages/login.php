@@ -29,7 +29,11 @@
 
     $errMsg = null;
     if (isset($_POST['login'])) {
-        if (isset($_POST['svvid']) && isset($_POST['pwd'])) {
+        if (
+            isset($_POST['svvid']) && 
+            isset($_POST['pwd']) && 
+            filter_var($_POST['svvid'], FILTER_VALIDATE_EMAIL)
+        ) {
             $svvid = $_POST['svvid'];
             $pwd = $_POST['pwd'];
             $userData = signIn($svvid, $pwd);
