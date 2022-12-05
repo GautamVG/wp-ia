@@ -15,6 +15,38 @@
 	border-radius: 1em;
 	height: 250px;
 	object-fit: cover;
+	margin-bottom: 1.5em;
+}
+
+.form-element {
+	display: flex;
+	flex-flow: column;
+	gap: 1em;
+}
+
+#ground-actions {
+	display: flex;
+	gap: 1em;
+	align-items: center;
+	margin: 1em 0;
+}
+
+#ground-actions label.btn {
+	background-color: var(--primary);
+	border-radius: 0.5em;
+	padding: 0.5em;
+	font-size: 1.1em;
+	color: white;
+}
+
+#update-details {
+	display: flex;
+	flex-flow: column;
+	gap: 1em;
+}
+
+#update-zone-details {
+	margin: 1em 0;
 }
 
 #ground-zones .segment h3 {

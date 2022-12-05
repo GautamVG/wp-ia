@@ -50,9 +50,10 @@
         try {
             $db = DB\connect();
             $query = "INSERT INTO `zone` (`name`, `is_primary`, `is_multi_zonal`, `amenities`, `ground_id`) VALUES (:name, true, :is_multi_zonal, :amenities, :groundId);";
+            $isMultiZonal = isset($_POST['ground-multi-zone']) ? 1 : 0;
             $stmt = $db->prepare($query);
             $stmt->bindParam(":name", $_POST['ground-name']);
-            $stmt->bindValue(":is_multi_zonal", isset($_POST['ground-multi-zone']));
+            $stmt->bindParam(":is_multi_zonal", $isMultiZonal);
             $stmt->bindParam(":amenities", $_POST['ground-amenities']);
             $stmt->bindParam(":groundId", $groundId);
             $stmt->execute();
@@ -74,7 +75,6 @@
             Redirect\toErrorPage($err->getMessage());
         }
     }
-
 
     $errMsg = null;
     if (isset($_POST['submit'])) {
@@ -100,8 +100,8 @@
                 foreach ($zones as $zone) {
                     createZone($createdGroundId, $zone['name'], $zone['amenities']);
                 }
-                Redirect\toGroundsPage();
             }
+            Redirect\toGroundsPage();
         } else {
             $errMsg = "Please fill all details";
         }
@@ -122,12 +122,12 @@
         <form method="post" enctype="multipart/form-data">
             <div class="form-element">
                 <label>Choose a photo</label>
-                <input type="file" name="ground-photo">
+                <input type="file" name="ground-photo" required>
                 <div id="selected-image-box" class="form-input"> </div>
             </div>
             <div class="form-element">
                 <label>Ground name</label>
-                <input type="text" name="ground-name">
+                <input type="text" name="ground-name" required>
             </div>
             <div class="form-element">
                 <label>Amenities</label>

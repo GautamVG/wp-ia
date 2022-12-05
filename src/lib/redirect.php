@@ -22,4 +22,9 @@
         header("Location: ". APP_ROOT_URL . "/pages/login.php");
         die();
     }
+
+    function toPrevious() {
+        header("Location: ". $_SERVER["HTTP_REFERER"]);
+        die();
+    }
 ?>
