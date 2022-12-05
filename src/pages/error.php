@@ -3,23 +3,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        <?php 
-            include_once(APP_ROOT . "styles/base.css");
-            include_once(APP_ROOT . "styles/error.css");
-        ?>
-    </style>
-    <title>Error | ZSchedule</title>
+    <?php include_once(APP_ROOT. "templates/head_base.php"); ?>
+    <link rel="stylesheet" href="/public/styles/error.css">
+    <title>Interval Error | ZSchedule</title>
 </head>
 <body>
-    <h1> There was an error </h1>
-    <p> 
-        <?php 
-            echo $_GET['msg'];
-        ?>
-    </p>
+    <div class="container">
+        <h1> There was an internal error </h1>
+        <p> 
+            <?php 
+                echo $_GET['msg'];
+            ?>
+        </p>
+    </div>
 </body>
 </html>
